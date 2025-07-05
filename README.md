@@ -16,7 +16,6 @@ GAGHL_UART is a simple and efficient UART (Universal Asynchronous Receiver/Trans
   - Strings from program memory (PROGMEM)
   - 32-bit unsigned integers as decimal or hex
 - ✅ Receive characters or strings with CR/LF detection
-- ✅ Non-blocking `uart_available()` function
 
 
 

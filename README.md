@@ -4,7 +4,7 @@
 
 GAGHL_UART is a simple and efficient UART (Universal Asynchronous Receiver/Transmitter) driver written in C, designed for use with AVR-based systems. It supports basic UART operations including initialization, transmitting and receiving data, sending strings from RAM or program memory, and converting integers to ASCII formats (decimal and hex).
 
----
+
 
 ## 📦 Features
 
@@ -18,7 +18,7 @@ GAGHL_UART is a simple and efficient UART (Universal Asynchronous Receiver/Trans
 - ✅ Receive characters or strings with CR/LF detection
 - ✅ Non-blocking `uart_available()` function
 
----
+
 
 ## 🚀 Getting Started
 
@@ -51,6 +51,7 @@ int main(void) {
     }
 }
 ```
+---
 ## 📚 API Overview
 
 | Function             | Parameters                     | Description                                                  |
@@ -72,7 +73,7 @@ int main(void) {
   - `8000000UL` (8 MHz)
   - `16000000UL` (16 MHz)
 
----
+
 
 ## 🛠️ TODO
 
@@ -81,12 +82,7 @@ int main(void) {
 - [ ] Implement optional interrupt-based RX/TX handling
 - [ ] Add unit tests or simulation examples (e.g., with simavr or Proteus)
 
-## 📄 License
 
-This project is licensed under the **MIT License**.  
-Feel free to use, modify, and share it in personal or commercial projects.
-
----
 
 ## 🤝 Contributing
 
@@ -101,9 +97,23 @@ Whether it's bug fixes, feature suggestions, or improvements — your help is ap
 
 If you’re using this library in your project, feel free to let me know — I’d love to check it out!
 
----
 
-## ✉️ Contact
+## License
 
-Created and maintained by **GAGHL**  
-For questions, feedback, or collaboration, feel free to get in touch.
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).
+
+You are free to:
+- Share — copy and redistribute the material in any medium or format
+- Adapt — remix, transform, and build upon the material
+
+Under the following terms:
+- **Attribution** — You must give appropriate credit to the author (GAGHL).
+- **NonCommercial** — You may not use the material for commercial purposes without explicit permission.
+
+For more information, see the full license: [https://creativecommons.org/licenses/by-nc/4.0/](https://creativecommons.org/licenses/by-nc/4.0/)
+
+© 2025 GAGHL. All rights reserved.
+
+## Author
+
+Developed by [GAGHL](https://github.com/GAGHL)

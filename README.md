@@ -40,7 +40,7 @@ In your project (before including headers), make sure to define CPU frequency:
 #include "GAGHL_UART.h"
 
 int main(void) {
-    uart_init(UART_BAUD_9600, 0);  // 0 = disable U2X, 1 = enable U2X
+    uart_init(UART_BAUD_9600);
     uart_puts((uint8_t *)"Hello, UART!\r\n");
     
     while (1) {
@@ -55,7 +55,7 @@ int main(void) {
 
 | Function             | Parameters                     | Description                                                  |
 |----------------------|--------------------------------|--------------------------------------------------------------|
-| `uart_init()`        | `uart_baud_t baud, uint8_t use_u2x` | Initializes UART with given baud rate and U2X mode          |
+| `uart_init()`        | `uart_baud_t baud` | Initializes UART with given baud rate          |
 | `uart_putchar()`     | `uint8_t data`                 | Sends a single byte over UART                                |
 | `uart_puts()`        | `const uint8_t *str`           | Sends a null-terminated string from RAM                      |
 | `uart_puts_P()`      | `const uint8_t *progmem_s`     | Sends a null-terminated string from program memory (FLASH)   |

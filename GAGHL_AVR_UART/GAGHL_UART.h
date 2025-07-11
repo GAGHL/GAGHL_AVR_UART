@@ -1,5 +1,5 @@
 /**
- * @file GAGHL_UART.c
+ * @file GAGHL_AVR_UART.c
  * @brief UART driver for AVR microcontrollers
  * 
  * This file provides a lightweight UART (Universal Asynchronous Receiver/Transmitter) driver
@@ -17,8 +17,8 @@
  * @author GAGHL
  * @date 2025-07-05
  */
-#ifndef GAGHL_UART_H_
-#define GAGHL_UART_H_
+#ifndef GAGHL_AVR_UART_H_
+#define GAGHL_AVR_UART_H_
 
 /**
  * @brief Enumeration of supported UART baud rates.
@@ -109,4 +109,4 @@ uint8_t uart_gets(uint8_t *buffer, uint8_t length);
  */
 uint8_t uart_available(void);
 
-#endif /* GAGHL_UART_H_ */
+#endif /* GAGHL_AVR_UART_H_ */

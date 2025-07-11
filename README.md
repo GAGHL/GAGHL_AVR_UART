@@ -39,8 +39,8 @@ GAGHL_AVR_UART is a simple UART (Universal Asynchronous Receiver/Transmitter) dr
 
 Copy these files into your AVR project:
 
-- `GAGHL_UART.c`
-- `GAGHL_UART.h`
+- `GAGHL_AVR_UART.c`
+- `GAGHL_AVR_UART.h`
 
 ### 2. Define `F_CPU`
 

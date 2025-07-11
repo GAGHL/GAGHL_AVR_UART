@@ -2,12 +2,6 @@
  * GAGHL_UART.c
  *
  * Created: 7/5/2025 2:47:27 PM
- *  Author: GAGHL
- */ 
-/*
- * GAGHL_UART.c
- *
- * Created: 7/5/2025 2:47:27 PM
  * Author : GAGHL
  */ 
 
@@ -18,7 +12,7 @@
 #include <avr/io.h>
 #include <stdint.h>
 #include <avr/pgmspace.h>
-#include "GAGHL_UART.h"
+#include "GAGHL_AVR_UART.h"
 
 void uart_init(Baudrate Baud){
 	#if (F_CPU==8000000UL)

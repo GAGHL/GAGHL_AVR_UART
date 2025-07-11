@@ -19,6 +19,19 @@ GAGHL_AVR_UART is a simple UART (Universal Asynchronous Receiver/Transmitter) dr
 - ✅ Receive characters or strings with CR/LF detection
 
 
+## 📚 API Overview
+
+| Function             | Parameters                     | Description                                                  |
+|----------------------|--------------------------------|--------------------------------------------------------------|
+| `uart_init()`        | `uart_baud_t baud`             | Initializes UART with given baud rate                        |
+| `uart_putchar()`     | `uint8_t data`                 | Sends a single byte over UART                                |
+| `uart_puts()`        | `const uint8_t *str`           | Sends a null-terminated string from RAM                      |
+| `uart_puts_P()`      | `const uint8_t *progmem_s`     | Sends a null-terminated string from program memory (FLASH)   |
+| `uart_putdec()`      | `uint32_t val`                 | Sends a 32-bit unsigned integer as a decimal string          |
+| `uart_puthex()`      | `uint32_t val`                 | Sends a 32-bit unsigned integer as a hexadecimal string      |
+| `uart_getchar()`     | *(void)*                       | Receives a single byte from UART (blocking)                  |
+| `uart_gets()`        | `uint8_t *buffer, uint8_t len` | Reads a string until CR/LF into buffer, null-terminated      |
+| `uart_available()`   | *(void)*                       | Returns 1 if data is available in UART receive buffer        |
 
 ## 🚀 Getting Started
 
@@ -54,20 +67,6 @@ int main(void) {
 }
 ```
 ---
-
-## 📚 API Overview
-
-| Function             | Parameters                     | Description                                                  |
-|----------------------|--------------------------------|--------------------------------------------------------------|
-| `uart_init()`        | `uart_baud_t baud`             | Initializes UART with given baud rate                        |
-| `uart_putchar()`     | `uint8_t data`                 | Sends a single byte over UART                                |
-| `uart_puts()`        | `const uint8_t *str`           | Sends a null-terminated string from RAM                      |
-| `uart_puts_P()`      | `const uint8_t *progmem_s`     | Sends a null-terminated string from program memory (FLASH)   |
-| `uart_putdec()`      | `uint32_t val`                 | Sends a 32-bit unsigned integer as a decimal string          |
-| `uart_puthex()`      | `uint32_t val`                 | Sends a 32-bit unsigned integer as a hexadecimal string      |
-| `uart_getchar()`     | *(void)*                       | Receives a single byte from UART (blocking)                  |
-| `uart_gets()`        | `uint8_t *buffer, uint8_t len` | Reads a string until CR/LF into buffer, null-terminated      |
-| `uart_available()`   | *(void)*                       | Returns 1 if data is available in UART receive buffer        |
 
 ## 🔧 Requirements
 

@@ -1,3 +1,5 @@
+# In the name of GOD
+
 # GAGHL_AVR_UART
 
 **A lightweight and minimal UART driver for AVR microcontrollers**

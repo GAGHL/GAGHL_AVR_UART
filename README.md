@@ -1,15 +1,14 @@
-# GAGHL_UART
+# GAGHL_AVR_UART
 
 **A lightweight and minimal UART driver for AVR microcontrollers**
 
-GAGHL_UART is a simple and efficient UART (Universal Asynchronous Receiver/Transmitter) driver written in C, designed for use with AVR-based systems. It supports basic UART operations including initialization, transmitting and receiving data, sending strings from RAM or program memory, and converting integers to ASCII formats (decimal and hex).
+GAGHL_AVR_UART is a simple UART (Universal Asynchronous Receiver/Transmitter) driver written in C, designed for use with AVR-based systems. It supports basic UART operations including initialization, transmitting & receiving data, sending strings from RAM or program memory, and converting integers to ASCII formats (decimal & hex).
 
 
 
 ## 📦 Features
 
 - ✅ Baud rate selection for `F_CPU = 8MHz` or `16MHz`
-- ✅ Compile-time configuration
 - ✅ Send:
   - Single characters
   - Null-terminated strings from RAM
@@ -37,11 +36,13 @@ In your project (before including headers), make sure to define CPU frequency:
 ```
 ### 3.Initialize UART
 ```c
+#define F_CPU 8000000UL
+
 #include "GAGHL_UART.h"
 
 int main(void) {
     uart_init(UART_BAUD_9600);
-    uart_puts((uint8_t *)"Hello, UART!\r\n");
+    uart_puts("Hello, UART!\r\n");
     
     while (1) {
         if (uart_available()) {
@@ -51,11 +52,12 @@ int main(void) {
 }
 ```
 ---
+
 ## 📚 API Overview
 
 | Function             | Parameters                     | Description                                                  |
 |----------------------|--------------------------------|--------------------------------------------------------------|
-| `uart_init()`        | `uart_baud_t baud` | Initializes UART with given baud rate          |
+| `uart_init()`        | `uart_baud_t baud`             | Initializes UART with given baud rate                        |
 | `uart_putchar()`     | `uint8_t data`                 | Sends a single byte over UART                                |
 | `uart_puts()`        | `const uint8_t *str`           | Sends a null-terminated string from RAM                      |
 | `uart_puts_P()`      | `const uint8_t *progmem_s`     | Sends a null-terminated string from program memory (FLASH)   |
@@ -64,6 +66,7 @@ int main(void) {
 | `uart_getchar()`     | *(void)*                       | Receives a single byte from UART (blocking)                  |
 | `uart_gets()`        | `uint8_t *buffer, uint8_t len` | Reads a string until CR/LF into buffer, null-terminated      |
 | `uart_available()`   | *(void)*                       | Returns 1 if data is available in UART receive buffer        |
+
 ## 🔧 Requirements
 
 - AVR microcontroller (e.g. **ATmega32**, **ATmega16**, etc.)
@@ -71,8 +74,6 @@ int main(void) {
 - `F_CPU` must be defined as either:
   - `8000000UL` (8 MHz)
   - `16000000UL` (16 MHz)
-
-
 
 ## 🛠️ TODO
 
@@ -95,7 +96,6 @@ Whether it's bug fixes, feature suggestions, or improvements — your help is ap
 - Open a Pull Request
 
 If you’re using this library in your project, feel free to let me know — I’d love to check it out!
-
 
 ## License
 

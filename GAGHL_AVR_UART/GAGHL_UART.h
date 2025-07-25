@@ -1,5 +1,5 @@
 /**
- * @file GAGHL_AVR_UART.c
+ * @file GAGHL_UART.c
  * @brief UART driver for AVR microcontrollers
  * 
  * This file provides a lightweight UART (Universal Asynchronous Receiver/Transmitter) driver
@@ -17,13 +17,13 @@
  * @author GAGHL
  * @date 2025-07-05
  */
-#ifndef GAGHL_AVR_UART_H_
-#define GAGHL_AVR_UART_H_
+#ifndef GAGHL_UART_H_
+#define GAGHL_UART_H_
 
 /**
  * @brief Enumeration of supported UART baud rates.
  */
-typedef enum{
+typedef enum {
 	UART_BAUDRATE_2400,
 	UART_BAUDRATE_4800,
 	UART_BAUDRATE_9600,
@@ -35,12 +35,38 @@ typedef enum{
 	UART_BAUDRATE_76800
 } Baudrate;
 
+typedef enum {
+	UART_DATABITS_5 = 5,
+	UART_DATABITS_6,
+	UART_DATABITS_7,
+	UART_DATABITS_8
+} UART_DataBits;
+
+typedef enum {
+	UART_STOPBITS_1,
+	UART_STOPBITS_2
+} UART_StopBits;
+
+typedef enum {
+	UART_PARITY_NONE,
+	UART_PARITY_EVEN,
+	UART_PARITY_ODD
+} UART_Parity;
+
+
 /**
- * @brief Initializes the UART peripheral with the specified baud rate.
+ * @brief Initialize UART peripheral with specified parameters.
  * 
- * @param Baud The baud rate selected from the Baudrate enum.
+ * This function configures the UART baud rate, data bits, stop bits, and parity mode
+ * according to the parameters. It supports F_CPU = 8MHz and 16MHz with pre-calculated UBRR
+ * values for common baud rates. The function enables the UART transmitter and receiver.
+ * 
+ * @param Baud Baud rate selection from Baudrate enum.
+ * @param databits Number of data bits (5, 6, 7, 8).
+ * @param stopbits Number of stop bits (1 or 2).
+ * @param parity Parity mode (None, Even, Odd).
  */
-void uart_init(Baudrate Baud);
+void uart_init(Baudrate Baud, UART_DataBits databits, UART_StopBits stopbits, UART_Parity parity);
 
 /**
  * @brief Sends a single byte over UART.
@@ -109,4 +135,12 @@ uint8_t uart_gets(uint8_t *buffer, uint8_t length);
  */
 uint8_t uart_available(void);
 
-#endif /* GAGHL_AVR_UART_H_ */
+/**
+ * @brief Flush UART receive buffer by reading and discarding any available data.
+ * 
+ * This function reads all bytes available in the UART receive buffer until empty,
+ * discarding them. Useful to clear stale or unwanted data.
+ */
+void uart_flush(void);
+
+#endif /* GAGHL_UART_H_ */

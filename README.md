@@ -11,27 +11,30 @@ GAGHL_AVR_UART is a simple UART (Universal Asynchronous Receiver/Transmitter) dr
 ## 📦 Features
 
 - ✅ Baud rate selection for `F_CPU = 8MHz` or `16MHz`
+- ✅ Supports configurable data bits (5 to 8), parity (none, even, odd), and stop bits (1 or 2)
 - ✅ Send:
   - Single characters
   - Null-terminated strings from RAM
   - Strings from program memory (PROGMEM)
   - 32-bit unsigned integers as decimal or hex
-- ✅ Receive characters or strings with CR/LF detection
+- ✅ Receive single bytes or strings with CR/LF detection and simple backspace handling
 
 
 ## 📚 API Overview
 
-| Function             | Parameters                     | Description                                                  |
-|----------------------|--------------------------------|--------------------------------------------------------------|
-| `uart_init()`        | `uart_baud_t baud`             | Initializes UART with given baud rate                        |
-| `uart_putchar()`     | `uint8_t data`                 | Sends a single byte over UART                                |
-| `uart_puts()`        | `const uint8_t *str`           | Sends a null-terminated string from RAM                      |
-| `uart_puts_P()`      | `const uint8_t *progmem_s`     | Sends a null-terminated string from program memory (FLASH)   |
-| `uart_putdec()`      | `uint32_t val`                 | Sends a 32-bit unsigned integer as a decimal string          |
-| `uart_puthex()`      | `uint32_t val`                 | Sends a 32-bit unsigned integer as a hexadecimal string      |
-| `uart_getchar()`     | *(void)*                       | Receives a single byte from UART (blocking)                  |
-| `uart_gets()`        | `uint8_t *buffer, uint8_t len` | Reads a string until CR/LF into buffer, null-terminated      |
-| `uart_available()`   | *(void)*                       | Returns 1 if data is available in UART receive buffer        |
+| Function           | Parameters                                                                          | Description                                                 |
+| ------------------ | ----------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| `uart_init()`      | `Baudrate baud, UART_DataBits databits, UART_StopBits stopbits, UART_Parity parity` | Initialize UART with settings                               |
+| `uart_putchar()`   | `uint8_t data`                                                                      | Transmit one byte                                           |
+| `uart_puts()`      | `const uint8_t *str`                                                                | Transmit null-terminated string from RAM                    |
+| `uart_puts_P()`    | `const uint8_t *progmem_s`                                                          | Transmit null-terminated string from program memory (FLASH) |
+| `uart_putdec()`    | `uint32_t val`                                                                      | Transmit 32-bit unsigned integer as decimal string          |
+| `uart_puthex()`    | `uint32_t val`                                                                      | Transmit 32-bit unsigned integer as hexadecimal string      |
+| `uart_getchar()`   | *(void)*                                                                            | Blocking receive one byte                                   |
+| `uart_gets()`      | `uint8_t *buffer, uint8_t maxlength`                                                | Receive string until CR/LF or buffer full                   |
+| `uart_available()` | *(void)*                                                                            | Check if data is available in receive buffer                |
+| `uart_flush()`     | *(void)*                                                                            | Flush receive buffer                                        |
+
 
 ## 🚀 Getting Started
 
@@ -79,7 +82,7 @@ int main(void) {
 ## 🛠️ TODO
 
 - [ ] Add support for 20 MHz operation
-- [ ] Add configuration options for parity and stop bits
+- ✅ Add configuration options for parity and stop bits. (Implemented in version V0.2.0)
 - [ ] Implement optional interrupt-based RX/TX handling
 - [ ] Add unit tests or simulation examples (e.g., with simavr or Proteus)
 

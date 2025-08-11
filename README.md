@@ -10,7 +10,7 @@ GAGHL_AVR_UART is a simple UART (Universal Asynchronous Receiver/Transmitter) dr
 
 ## 📦 Features
 
-- ✅ Auto Baudrate selection
+- ✅ Auto Baud rate selection
 - ✅ Supports configurable data bits (5 to 8), parity (none, even, odd), and stop bits (1 or 2)
 - ✅ Send:
   - Single characters

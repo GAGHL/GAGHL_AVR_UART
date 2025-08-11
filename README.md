@@ -10,7 +10,7 @@ GAGHL_AVR_UART is a simple UART (Universal Asynchronous Receiver/Transmitter) dr
 
 ## 📦 Features
 
-- ✅ Baud rate selection for `F_CPU = 8MHz` or `16MHz`
+- ✅ Auto Baudrate selection
 - ✅ Supports configurable data bits (5 to 8), parity (none, even, odd), and stop bits (1 or 2)
 - ✅ Send:
   - Single characters
@@ -24,7 +24,7 @@ GAGHL_AVR_UART is a simple UART (Universal Asynchronous Receiver/Transmitter) dr
 
 | Function           | Parameters                                                                          | Description                                                 |
 | ------------------ | ----------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| `uart_init()`      | `Baudrate baud, UART_DataBits databits, UART_StopBits stopbits, UART_Parity parity` | Initialize UART with settings                               |
+| `uart_init()`      | `uint32_t baud, UART_DataBits databits, UART_StopBits stopbits, UART_Parity parity` | Initialize UART with settings                               |
 | `uart_putchar()`   | `uint8_t data`                                                                      | Transmit one byte                                           |
 | `uart_puts()`      | `const uint8_t *str`                                                                | Transmit null-terminated string from RAM                    |
 | `uart_puts_P()`    | `const uint8_t *progmem_s`                                                          | Transmit null-terminated string from program memory (FLASH) |
@@ -81,7 +81,7 @@ int main(void) {
 
 ## 🛠️ TODO
 
-- [ ] Add support for 20 MHz operation
+- ✅ Add support for 20 MHz operation. (Implemented in version V0.2.1)
 - ✅ Add configuration options for parity and stop bits. (Implemented in version V0.2.0)
 - [ ] Implement optional interrupt-based RX/TX handling
 - [ ] Add unit tests or simulation examples (e.g., with simavr or Proteus)

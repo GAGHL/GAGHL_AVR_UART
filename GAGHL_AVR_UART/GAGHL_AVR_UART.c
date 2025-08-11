@@ -4,12 +4,6 @@
  * Created: 7/5/2025 2:47:27 PM
  *  Author: GAGHL
  */ 
-/*
- * GAGHL_UART.c
- *
- * Created: 7/5/2025 2:47:27 PM
- * Author : GAGHL
- */ 
 
 #ifndef F_CPU
 #define F_CPU 8000000UL
@@ -192,3 +186,4 @@ void uart_flush(void){
 		(void)dummy;
 	}
 }
+

@@ -8,7 +8,7 @@
  * and converting and transmitting numerical data in decimal and hexadecimal formats.
  * 
  * Supported features:
- *  - Baud rate selection at compile-time for F_CPU = 8MHz or 16MHz
+ *  - Baud rate selection at compile-time
  *  - Transmit single characters, strings, and 32-bit numbers (decimal/hex)
  *  - Receive characters and strings with end-of-line detection
  *  - Optional support for strings stored in program memory using `pgm_read_byte`
@@ -23,17 +23,6 @@
 /**
  * @brief Enumeration of supported UART baud rates.
  */
-typedef enum {
-	UART_BAUDRATE_2400,
-	UART_BAUDRATE_4800,
-	UART_BAUDRATE_9600,
-	UART_BAUDRATE_14400,
-	UART_BAUDRATE_19200,
-	UART_BAUDRATE_28800,
-	UART_BAUDRATE_38400,
-	UART_BAUDRATE_57600,
-	UART_BAUDRATE_76800
-} Baudrate;
 
 typedef enum {
 	UART_DATABITS_5 = 5,
@@ -57,16 +46,16 @@ typedef enum {
 /**
  * @brief Initialize UART peripheral with specified parameters.
  * 
- * This function configures the UART baud rate, data bits, stop bits, and parity mode
- * according to the parameters. It supports F_CPU = 8MHz and 16MHz with pre-calculated UBRR
- * values for common baud rates. The function enables the UART transmitter and receiver.
+ * This function configures the UART baud rate, data bits, stop bits, and parity mode.
+ * It automatically selects whether to use double speed mode (U2X) based on the baud rate
+ * to achieve the best possible timing.
  * 
- * @param Baud Baud rate selection from Baudrate enum.
+ * @param baud The UART baud rate (e.g., 9600, 115200).
  * @param databits Number of data bits (5, 6, 7, 8).
  * @param stopbits Number of stop bits (1 or 2).
  * @param parity Parity mode (None, Even, Odd).
  */
-void uart_init(Baudrate Baud, UART_DataBits databits, UART_StopBits stopbits, UART_Parity parity);
+void uart_init(uint32_t baud, UART_DataBits databits, UART_StopBits stopbits, UART_Parity parity);
 
 /**
  * @brief Sends a single byte over UART.
@@ -140,7 +129,6 @@ uint8_t uart_available(void);
  * 
  * This function reads all bytes available in the UART receive buffer until empty,
  * discarding them. Useful to clear stale or unwanted data.
-
  */
 void uart_flush(void);
 

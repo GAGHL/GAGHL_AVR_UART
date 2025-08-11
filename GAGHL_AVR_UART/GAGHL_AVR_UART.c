@@ -14,39 +14,25 @@
 #include <avr/pgmspace.h>
 #include "GAGHL_UART.h"
 
-void uart_init(Baudrate Baud, UART_DataBits databits, UART_StopBits stopbits, UART_Parity parity) {
+void uart_init(uint32_t baud, UART_DataBits databits, UART_StopBits stopbits, UART_Parity parity) {
 	
 	uint8_t ucsrc_val = (1 << URSEL);
 	
-	#if (F_CPU==8000000UL)
+	uint8_t use_double_speed = 1;
+	uint16_t UBRR_val = ((F_CPU + 8UL * baud - 1) / (8UL * baud)) - 1;
 	
-	switch(Baud){
-		case UART_BAUDRATE_2400:  UBRRH = 0; UBRRL = 207; UCSRA &= ~(1 << U2X); break; //Error =  0.2%
-		case UART_BAUDRATE_4800:  UBRRH = 0; UBRRL = 103; UCSRA &= ~(1 << U2X); break; //Error =  0.2%
-		case UART_BAUDRATE_9600:  UBRRH = 0; UBRRL = 51;  UCSRA &= ~(1 << U2X); break; //Error =  0.2%
-		case UART_BAUDRATE_14400: UBRRH = 0; UBRRL = 68;  UCSRA |= (1 << U2X);  break; //Error =  0.6%
-		case UART_BAUDRATE_19200: UBRRH = 0; UBRRL = 25;  UCSRA &= ~(1 << U2X); break; //Error =  0.2%
-		case UART_BAUDRATE_28800: UBRRH = 0; UBRRL = 34;  UCSRA |= (1 << U2X);  break; //Error = -0.8%
-		case UART_BAUDRATE_38400: UBRRH = 0; UBRRL = 25;  UCSRA |= (1 << U2X);  break; //Error =  0.2%
-		case UART_BAUDRATE_57600: UBRRH = 0; UBRRL = 16;  UCSRA |=  (1 << U2X); break; //Error =  2.1%!
-		case UART_BAUDRATE_76800: UBRRH = 0; UBRRL = 12;  UCSRA |=  (1 << U2X); break; //Error =  0.2%
+	if (UBRR_val > 255) {
+		UBRR_val = ((F_CPU + 16UL * baud - 1) / (16UL * baud)) - 1;
+		use_double_speed = 0;
 	}
 	
-	#elif (F_CPU==16000000UL)
-	
-	switch(Baud){
-		case UART_BAUDRATE_4800:  UBRRH = 0; UBRRL = 207; UCSRA &= ~(1 << U2X); break; //Error =  0.2%
-		case UART_BAUDRATE_9600:  UBRRH = 0; UBRRL = 103; UCSRA &= ~(1 << U2X); break; //Error =  0.2%
-		case UART_BAUDRATE_14400: UBRRH = 0; UBRRL = 138; UCSRA |= (1 << U2X);  break; //Error = -0.1%
-		case UART_BAUDRATE_19200: UBRRH = 0; UBRRL = 51;  UCSRA &= ~(1 << U2X); break; //Error =  0.2%
-		case UART_BAUDRATE_28800: UBRRH = 0; UBRRL = 68;  UCSRA |= (1 << U2X);  break; //Error =  0.6%
-		case UART_BAUDRATE_38400: UBRRH = 0; UBRRL = 51;  UCSRA |= (1 << U2X);  break; //Error =  0.2%
-		case UART_BAUDRATE_57600: UBRRH = 0; UBRRL = 34;  UCSRA |= (1 << U2X);  break; //Error = -0.8%
-		case UART_BAUDRATE_76800: UBRRH = 0; UBRRL = 25;  UCSRA |= (1 << U2X);  break; //Error =  0.2%
+	if (use_double_speed) {
+		UCSRA |= (1 << U2X);
+	} else {
+		UCSRA &= ~(1 << U2X);
 	}
-	#else
-		#error "Unsupported F_CPU! Please define as 8MHz or 16MHz."
-	#endif
+	
+	UBRRL = UBRR_val;
 	
 	// ---------- Setting Data Bits ----------
 	ucsrc_val &= ~((1 << UCSZ1) | (1 << UCSZ0));
@@ -73,7 +59,7 @@ void uart_init(Baudrate Baud, UART_DataBits databits, UART_StopBits stopbits, UA
 	
 	// ---------- Enable RX & TX ----------
 	UCSRB = (1 << RXEN) | (1 << TXEN);
-	UCSRC = ucsrc_val;
+	UCSRC = (1 << URSEL) | ucsrc_val;
 }
 
 void uart_putchar(uint8_t data){
@@ -186,4 +172,3 @@ void uart_flush(void){
 		(void)dummy;
 	}
 }
-

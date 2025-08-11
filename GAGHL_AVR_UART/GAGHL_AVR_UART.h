@@ -140,6 +140,7 @@ uint8_t uart_available(void);
  * 
  * This function reads all bytes available in the UART receive buffer until empty,
  * discarding them. Useful to clear stale or unwanted data.
+
  */
 void uart_flush(void);
 

@@ -59,7 +59,7 @@ In your project (before including headers), make sure to define CPU frequency:
 #include "GAGHL_UART.h"
 
 int main(void) {
-    uart_init(UART_BAUD_9600);
+    uart_init(9600, UART_DATABITS_8, UART_STOPBITS_1, UART_PARITY_NONE);
     uart_puts("Hello, UART!\r\n");
     
     while (1) {

@@ -35,6 +35,22 @@ GAGHL_AVR_UART is a simple UART (Universal Asynchronous Receiver/Transmitter) dr
 | `uart_available()` | *(void)*                                                                            | Check if data is available in receive buffer                |
 | `uart_flush()`     | *(void)*                                                                            | Flush receive buffer                                        |
 
+We appreciate the time and effort you've put into this pull request.
+To help us review it efficiently, please ensure you've gone through the following checklist:
+Submission Checklist 📝
+
+I have updated existing examples or added new ones (if applicable).
+I have used cargo xtask fmt-packages command to ensure that all changed code is formatted correctly.
+My changes were added to the CHANGELOG.md in the proper section.
+I have added necessary changes to user code to the Migration Guide.
+
+    My changes are in accordance to the esp-rs developer guidelines
+
+Extra:
+
+    I have read the CONTRIBUTING.md guide and followed its instructions.
+
+Pull Request Details 📖
 
 ## 🚀 Getting Started
 
@@ -81,8 +97,8 @@ int main(void) {
 
 ## 🛠️ TODO
 
-- ✅ Add support for 20 MHz operation. (Implemented in version V0.2.1)
-- ✅ Add configuration options for parity and stop bits. (Implemented in version V0.2.0)
+- [x] Add support for 20 MHz operation. (Implemented in version V0.2.1)
+- [x] Add configuration options for parity and stop bits. (Implemented in version V0.2.0)
 - [ ] Implement optional interrupt-based RX/TX handling
 - [ ] Add unit tests or simulation examples (e.g., with simavr or Proteus)
 

@@ -74,9 +74,6 @@ int main(void) {
 
 - AVR microcontroller (e.g. **ATmega32**, **ATmega16**, etc.)
 - AVR-GCC or any compatible C toolchain
-- `F_CPU` must be defined as either:
-  - `8000000UL` (8 MHz)
-  - `16000000UL` (16 MHz)
 
 ## 🛠️ TODO
 

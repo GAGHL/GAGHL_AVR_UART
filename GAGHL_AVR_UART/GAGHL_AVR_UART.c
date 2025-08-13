@@ -12,7 +12,7 @@
 #include <avr/io.h>
 #include <stdint.h>
 #include <avr/pgmspace.h>
-#include "GAGHL_UART.h"
+#include "GAGHL_AVR_UART.h"
 
 void uart_init(uint32_t baud, UART_DataBits databits, UART_StopBits stopbits, UART_Parity parity) {
 	
@@ -171,4 +171,5 @@ void uart_flush(void){
 		volatile uint8_t dummy = UDR;
 		(void)dummy;
 	}
+
 }

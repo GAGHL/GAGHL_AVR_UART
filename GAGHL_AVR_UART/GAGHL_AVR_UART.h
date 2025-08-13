@@ -17,8 +17,8 @@
  * @author GAGHL
  * @date 2025-07-05
  */
-#ifndef GAGHL_UART_H_
-#define GAGHL_UART_H_
+#ifndef GAGHL_AVR_UART_H_
+#define GAGHL_AVR_UART_H_
 
 /**
  * @brief Enumeration of supported UART baud rates.
@@ -129,7 +129,8 @@ uint8_t uart_available(void);
  * 
  * This function reads all bytes available in the UART receive buffer until empty,
  * discarding them. Useful to clear stale or unwanted data.
+
  */
 void uart_flush(void);
 
-#endif /* GAGHL_UART_H_ */
+#endif /* GAGHL_AVR_UART_H_ */

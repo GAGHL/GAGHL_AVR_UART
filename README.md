@@ -6,7 +6,8 @@
 
 GAGHL_AVR_UART is a simple UART (Universal Asynchronous Receiver/Transmitter) driver written in C, designed for use with AVR-based systems. It supports basic UART operations including initialization, transmitting & receiving data, sending strings from RAM or program memory, and converting integers to ASCII formats (decimal & hex).
 
-
+## 💡 Browse Online
+You can explore this repository in a VS Code-like interface using [this link](https://github1s.com/GAGHL/GAGHL_AVR_UART).
 
 ## 📦 Features
 
